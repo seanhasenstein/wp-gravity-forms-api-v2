@@ -1,0 +1,21 @@
+{
+  "name": "wboyc-wp-gf-api",
+  "version": "0.0.1",
+  "description": "Acess to WBYOC Wordpress Gravity Forms API",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "author": "Sean Hasenstein <seanhasenstein@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.2",
+    "eslint-config-prettier": "^4.1.0",
+    "prettier": "^1.16.4"
+  }
+}
