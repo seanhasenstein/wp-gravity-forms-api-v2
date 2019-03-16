@@ -16,7 +16,7 @@ app.get("/api", async (req, res) => {
 
   const results = await getData(crewForm, username, password);
 
-  res.json(results.data.entries[0]);
+  res.json(results.data);
 });
 
 app.listen(2019, () => {
