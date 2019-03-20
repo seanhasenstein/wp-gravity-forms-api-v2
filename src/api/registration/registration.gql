@@ -1,0 +1,28 @@
+type IndividualRegistration {
+  date: String!
+  entryId: String!
+  firstName: String!
+  lastName: String!
+  streetAddress: String!
+  streetAddress2: String
+  city: String!
+  state: String!
+  zipcode: String!
+  phone: String!
+  email: String!
+  wiaaNumber: String!
+  wiaaClass: String!
+  officialsAssociation: String!
+  foodAllergies: String!
+  emergencyName: String!
+  emergencyNumber: String!
+  transactionId: String!
+  paymentAmount: String!
+  paymentStatus: String!
+  paymentMethod: String!
+  cardNumber: String!
+}
+
+type Query {
+  allInividualRegistrations: [IndividualRegistration]!
+}
