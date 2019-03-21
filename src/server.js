@@ -1,11 +1,11 @@
-require("dotenv").config();
-const { ApolloServer } = require("apollo-server");
-const merge = require("lodash.merge");
-const loadTypeSchema = require("./utils/schema");
-const registration = require("./api/registration/registration.resolvers");
-const SingleRegistrationAPI = require("./api/registration/registration.datasource");
+require('dotenv').config();
+const { ApolloServer } = require('apollo-server');
+const merge = require('lodash.merge');
+const loadTypeSchema = require('./utils/schema');
+const registration = require('./api/registration/registration.resolvers');
+const SingleRegistrationAPI = require('./api/registration/registration.datasource');
 
-const types = ["registration"];
+const types = ['registration', 'session'];
 
 const start = async () => {
   const rootSchema = `

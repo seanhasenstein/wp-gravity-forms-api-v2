@@ -1,0 +1,16 @@
+type Session {
+  id: Int!
+  title: String!
+  category: String!
+  level: String!
+  date: String!
+  time: String!
+  location: String!
+  year: String!
+  crewDeal: Boolean!
+  price: Int!
+}
+
+# extend type Query {
+#   allKaukaunaSessions: [Session]!
+# }

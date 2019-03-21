@@ -16,11 +16,12 @@ type IndividualRegistration {
   foodAllergies: String!
   emergencyName: String!
   emergencyNumber: String!
-  transactionId: String!
-  paymentAmount: String!
-  paymentStatus: String!
-  paymentMethod: String!
-  cardNumber: String!
+  sessions: [Session]!
+  transactionId: String
+  paymentAmount: String
+  paymentStatus: String
+  paymentMethod: String
+  cardNumber: String
 }
 
 type Query {
