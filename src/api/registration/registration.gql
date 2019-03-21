@@ -1,4 +1,4 @@
-type IndividualRegistration {
+type Registration {
   date: String!
   entryId: String!
   firstName: String!
@@ -13,6 +13,8 @@ type IndividualRegistration {
   wiaaNumber: String!
   wiaaClass: String!
   officialsAssociation: String!
+  crewSize: String
+  crewMembers: [String!]
   foodAllergies: String!
   emergencyName: String!
   emergencyNumber: String!
@@ -25,5 +27,7 @@ type IndividualRegistration {
 }
 
 type Query {
-  allInividualRegistrations: [IndividualRegistration]!
+  inividualRegistrations: [Registration]!
+  hsCrewRegistrations: [Registration]!
+  allRegistrations: [Registration]!
 }
