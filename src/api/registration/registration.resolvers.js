@@ -1,7 +1,4 @@
-const {
-  individualSessions,
-  hsCrewDealSessions
-} = require('../session/session.datasource');
+const sessionsDataSource = require('../session/session.datasource');
 
 async function getIndividualRegistrationData(dataSources) {
   const registrations = await dataSources.singleRegistrationAPI.getRegistrations();
@@ -35,58 +32,58 @@ async function getIndividualRegistrationData(dataSources) {
       // Map over the sessionsArray and update the values
       .map(entry => {
         if (entry === '170 (Kau WC Fri Sat') {
-          return (entry = individualSessions[0]);
+          return (entry = sessionsDataSource[0]);
         }
         if (entry === '170 (Kau WC Sat Sun)') {
-          return (entry = individualSessions[1]);
+          return (entry = sessionsDataSource[1]);
         }
         if (entry === '170 (Kau MC Sat Sun)') {
-          return (entry = individualSessions[2]);
+          return (entry = sessionsDataSource[2]);
         }
         if (entry === '85 (Kau HS Fri)') {
-          return (entry = individualSessions[3]);
+          return (entry = sessionsDataSource[3]);
         }
         if (entry === '85 (Kau HS Sat AM)') {
-          return (entry = individualSessions[4]);
+          return (entry = sessionsDataSource[4]);
         }
         if (entry === '85 (Kau HS Sat PM Two Person)') {
-          return (entry = individualSessions[5]);
+          return (entry = sessionsDataSource[5]);
         }
         if (entry === '85 (Kau HS Sat PM Three Person)') {
-          return (entry = individualSessions[6]);
+          return (entry = sessionsDataSource[6]);
         }
         if (entry === '85 (Kau HS Sun Two Person)') {
-          return (entry = individualSessions[7]);
+          return (entry = sessionsDataSource[7]);
         }
         if (entry === '85 (Kau HS Sun Three Person)') {
-          return (entry = individualSessions[8]);
+          return (entry = sessionsDataSource[8]);
         }
         if (entry === '170 (Ply WC Fri Sat)') {
-          return (entry = individualSessions[9]);
+          return (entry = sessionsDataSource[9]);
         }
         if (entry === '170 (Ply WC Sat Sun)') {
-          return (entry = individualSessions[10]);
+          return (entry = sessionsDataSource[10]);
         }
         if (entry === '170 (Ply MC Sat Sun)') {
-          return (entry = individualSessions[11]);
+          return (entry = sessionsDataSource[11]);
         }
         if (entry === '85 (Ply HS Fri)') {
-          return (entry = individualSessions[12]);
+          return (entry = sessionsDataSource[12]);
         }
         if (entry === '85 (HS Sat AM)') {
-          return (entry = individualSessions[13]);
+          return (entry = sessionsDataSource[13]);
         }
         if (entry === '85 (HS Sat PM Two Person)') {
-          return (entry = individualSessions[14]);
+          return (entry = sessionsDataSource[14]);
         }
         if (entry === '85 (HS Sat PM Three Person)') {
-          return (entry = individualSessions[15]);
+          return (entry = sessionsDataSource[15]);
         }
         if (entry === '85 (HS Sun Two Person)') {
-          return (entry = individualSessions[16]);
+          return (entry = sessionsDataSource[16]);
         }
         if (entry === '85 (HS Sun Three Person)') {
-          return (entry = individualSessions[17]);
+          return (entry = sessionsDataSource[17]);
         } else {
           return {
             id: 0,
@@ -137,6 +134,17 @@ async function getIndividualRegistrationData(dataSources) {
 async function getCrewRegistrationData(dataSources) {
   const registrations = await dataSources.hsCrewRegistrationAPI.getRegistrations();
 
+  // Update the session.dataSource to the crewDeal info
+  const updateSessionsDataSourceArray = sessionsDataSource
+    .filter(session => session.category === 'High School')
+    .map(session => {
+      return {
+        ...session,
+        crewDeal: true,
+        price: 75
+      };
+    });
+
   const data = registrations.entries.map(entry => {
     const sessionsArray = [
       entry['3.1'],
@@ -159,40 +167,40 @@ async function getCrewRegistrationData(dataSources) {
       // Map over the sessionsArray and update the values
       .map(entry => {
         if (entry === '75 (Kau HS Fri)') {
-          return (entry = hsCrewDealSessions[0]);
+          return (entry = updateSessionsDataSourceArray[0]);
         }
         if (entry === '75 (Kau HS Sat AM)') {
-          return (entry = hsCrewDealSessions[1]);
+          return (entry = updateSessionsDataSourceArray[1]);
         }
         if (entry === '75 (Kau HS Sat PM Two Person)') {
-          return (entry = hsCrewDealSessions[2]);
+          return (entry = updateSessionsDataSourceArray[2]);
         }
         if (entry === '75 (Kau HS Sat PM Three Person)') {
-          return (entry = hsCrewDealSessions[3]);
+          return (entry = updateSessionsDataSourceArray[3]);
         }
         if (entry === '75 (Kau HS Sun Two Person)') {
-          return (entry = hsCrewDealSessions[4]);
+          return (entry = updateSessionsDataSourceArray[4]);
         }
         if (entry === '75 (Kau HS Sun Three Person)') {
-          return (entry = hsCrewDealSessions[5]);
+          return (entry = updateSessionsDataSourceArray[5]);
         }
         if (entry === '75 (Ply HS Fri)') {
-          return (entry = hsCrewDealSessions[6]);
+          return (entry = updateSessionsDataSourceArray[6]);
         }
         if (entry === '75 (HS Sat AM)') {
-          return (entry = hsCrewDealSessions[7]);
+          return (entry = updateSessionsDataSourceArray[7]);
         }
         if (entry === '75 (HS Sat PM Two Person)') {
-          return (entry = hsCrewDealSessions[8]);
+          return (entry = updateSessionsDataSourceArray[8]);
         }
         if (entry === '75 (HS Sat PM Three Person)') {
-          return (entry = hsCrewDealSessions[9]);
+          return (entry = updateSessionsDataSourceArray[9]);
         }
         if (entry === '75 (HS Sun Two Person)') {
-          return (entry = hsCrewDealSessions[10]);
+          return (entry = updateSessionsDataSourceArray[10]);
         }
         if (entry === '75 (Ply HS Sun Three Person)') {
-          return (entry = hsCrewDealSessions[11]);
+          return (entry = updateSessionsDataSourceArray[11]);
         } else {
           return {
             id: 0,
@@ -243,17 +251,19 @@ async function getCrewRegistrationData(dataSources) {
 }
 
 const inividualRegistrations = async (_, __, { dataSources }) => {
-  getIndividualRegistrationData(dataSources);
+  const data = getIndividualRegistrationData(dataSources);
+  return data;
 };
 
 const hsCrewRegistrations = async (_, __, { dataSources }) => {
-  getCrewRegistrationData(dataSources);
+  const data = getCrewRegistrationData(dataSources);
+  return data;
 };
 
 const allRegistrations = async (_, __, { dataSources }) => {
   const individualData = await getIndividualRegistrationData(dataSources);
   const hsCrewData = await getCrewRegistrationData(dataSources);
-  const combinedData = individualData.concat(hsCrewData);
+  const combinedData = [...individualData, ...hsCrewData];
   return combinedData;
 };
 
