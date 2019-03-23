@@ -9,8 +9,10 @@ type Session {
   year: String!
   crewDeal: Boolean!
   price: Int!
+  officials: [Registration]!
+  totalAttending: Int!
 }
 
-# extend type Query {
-#   allKaukaunaSessions: [Session]!
-# }
+extend type Query {
+  singleSession(id: ID!): Session!
+}
