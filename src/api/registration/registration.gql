@@ -27,6 +27,7 @@ type Registration {
 }
 
 type Query {
+  singleRegistration(transactionId: String!): Registration!
   inividualRegistrations: [Registration]!
   hsCrewRegistrations: [Registration]!
   allRegistrations: [Registration]!
