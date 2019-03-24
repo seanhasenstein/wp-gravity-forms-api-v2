@@ -1,7 +1,7 @@
 const {
   getIndividualRegistrationData,
   getCrewRegistrationData
-} = require('../data/registration.functions');
+} = require('../data/registration.utils');
 
 const singleRegistration = async (_, args, { dataSources }) => {
   const individualData = await getIndividualRegistrationData(dataSources);
@@ -9,10 +9,10 @@ const singleRegistration = async (_, args, { dataSources }) => {
   const combinedData = [...individualData, ...hsCrewData];
 
   // find the registration with the transactionId = args.transactionId
-  const registration = combinedData.filter(
+  const registration = combinedData.find(
     registration => registration.transactionId === args.transactionId
   );
-  return registration[0];
+  return registration;
 };
 
 const inividualRegistrations = async (_, __, { dataSources }) => {
