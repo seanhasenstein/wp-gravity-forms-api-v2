@@ -1,0 +1,15 @@
+type Official {
+  name: String!
+  isRegistered: Boolean!
+  transactionId: String
+}
+
+type Crew {
+  crewMembers: [Official]!
+  crewSize: String!
+  sessions: [Session]!
+}
+
+extend type Query {
+  allCrews: [Crew]!
+}

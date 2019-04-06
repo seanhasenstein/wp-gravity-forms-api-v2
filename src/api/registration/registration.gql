@@ -24,6 +24,7 @@ type Registration {
   paymentStatus: String
   paymentMethod: String
   cardNumber: String
+  isRegistered: Boolean
 }
 
 type Query {

@@ -199,7 +199,7 @@ async function getCrewRegistrationData(dataSources) {
         if (entry === '75 (HS Sun Two Person)') {
           return (entry = updateSessionsDataSourceArray[10]);
         }
-        if (entry === '75 (Ply HS Sun Three Person)') {
+        if (entry === '75 (HS Sun Three Person)') {
           return (entry = updateSessionsDataSourceArray[11]);
         } else {
           return {

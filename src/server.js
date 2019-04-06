@@ -4,12 +4,13 @@ const merge = require('lodash.merge');
 const loadTypeSchema = require('./utils/schema');
 const registration = require('./api/registration/registration.resolvers');
 const session = require('./api/session/session.resolvers');
+const crew = require('./api/crew/crew.resolver');
 const {
   SingleRegistrationAPI,
   HsCrewRegistrationAPI
 } = require('./api/registration/registration.datasource');
 
-const types = ['registration', 'session'];
+const types = ['registration', 'session', 'crew'];
 
 const start = async () => {
   const rootSchema = `
@@ -22,7 +23,7 @@ const start = async () => {
 
   const server = new ApolloServer({
     typeDefs: [rootSchema, ...schemaTypes],
-    resolvers: merge({}, registration, session),
+    resolvers: merge({}, registration, session, crew),
     dataSources: () => {
       return {
         singleRegistrationAPI: new SingleRegistrationAPI(),
