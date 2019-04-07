@@ -9,7 +9,8 @@ const sessionsData = [
     location: 'Kaukauna',
     year: '2019',
     crewDeal: false,
-    price: 170
+    price: 170,
+    officials: null
   },
   {
     id: 2,
@@ -21,7 +22,8 @@ const sessionsData = [
     location: 'Kaukauna',
     year: '2019',
     crewDeal: false,
-    price: 170
+    price: 170,
+    officials: null
   },
   {
     id: 3,
@@ -33,7 +35,8 @@ const sessionsData = [
     location: 'Kaukauna',
     year: '2019',
     crewDeal: false,
-    price: 170
+    price: 170,
+    officials: null
   },
   {
     id: 4,
@@ -45,7 +48,8 @@ const sessionsData = [
     location: 'Kaukauna',
     year: '2019',
     crewDeal: false,
-    price: 85
+    price: 85,
+    officials: null
   },
   {
     id: 5,
@@ -57,7 +61,8 @@ const sessionsData = [
     location: 'Kaukauna',
     year: '2019',
     crewDeal: false,
-    price: 85
+    price: 85,
+    officials: null
   },
   {
     id: 6,
@@ -69,7 +74,8 @@ const sessionsData = [
     location: 'Kaukauna',
     year: '2019',
     crewDeal: false,
-    price: 85
+    price: 85,
+    officials: null
   },
   {
     id: 7,
@@ -81,7 +87,8 @@ const sessionsData = [
     location: 'Kaukauna',
     year: '2019',
     crewDeal: false,
-    price: 85
+    price: 85,
+    officials: null
   },
   {
     id: 8,
@@ -93,7 +100,8 @@ const sessionsData = [
     location: 'Kaukauna',
     year: '2019',
     crewDeal: false,
-    price: 85
+    price: 85,
+    officials: null
   },
   {
     id: 9,
@@ -105,7 +113,8 @@ const sessionsData = [
     location: 'Kaukauna',
     year: '2019',
     crewDeal: false,
-    price: 85
+    price: 85,
+    officials: null
   },
   {
     id: 10,
@@ -117,7 +126,8 @@ const sessionsData = [
     location: 'Plymouth',
     year: '2019',
     crewDeal: false,
-    price: 170
+    price: 170,
+    officials: null
   },
   {
     id: 11,
@@ -129,7 +139,8 @@ const sessionsData = [
     location: 'Plymouth',
     year: '2019',
     crewDeal: false,
-    price: 170
+    price: 170,
+    officials: null
   },
   {
     id: 12,
@@ -141,7 +152,8 @@ const sessionsData = [
     location: 'Plymouth',
     year: '2019',
     crewDeal: false,
-    price: 170
+    price: 170,
+    officials: null
   },
   {
     id: 13,
@@ -153,7 +165,8 @@ const sessionsData = [
     location: 'Plymouth',
     year: '2019',
     crewDeal: false,
-    price: 85
+    price: 85,
+    officials: null
   },
   {
     id: 14,
@@ -165,7 +178,8 @@ const sessionsData = [
     location: 'Plymouth',
     year: '2019',
     crewDeal: false,
-    price: 85
+    price: 85,
+    officials: null
   },
   {
     id: 15,
@@ -177,7 +191,8 @@ const sessionsData = [
     location: 'Plymouth',
     year: '2019',
     crewDeal: false,
-    price: 85
+    price: 85,
+    officials: null
   },
   {
     id: 16,
@@ -189,7 +204,8 @@ const sessionsData = [
     location: 'Plymouth',
     year: '2019',
     crewDeal: false,
-    price: 85
+    price: 85,
+    officials: null
   },
   {
     id: 17,
@@ -201,7 +217,8 @@ const sessionsData = [
     location: 'Plymouth',
     year: '2019',
     crewDeal: false,
-    price: 85
+    price: 85,
+    officials: null
   },
   {
     id: 18,
@@ -213,7 +230,8 @@ const sessionsData = [
     location: 'Plymouth',
     year: '2019',
     crewDeal: false,
-    price: 85
+    price: 85,
+    officials: null
   }
 ];
 

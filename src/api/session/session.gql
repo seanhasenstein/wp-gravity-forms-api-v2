@@ -15,4 +15,5 @@ type Session {
 
 extend type Query {
   singleSession(id: ID!): Session!
+  allSessions: [Session]!
 }

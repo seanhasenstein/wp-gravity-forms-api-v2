@@ -17,7 +17,8 @@ const singleSession = async (_, args, { dataSources }) => {
   // Add an empty officials array to the session ojbect
   session.officials = [];
 
-  // loop thru all registrations and add relevant registrations to the session.officials array
+  // loop thru all registrations and push the officials
+  // that registered for that session onto the sessions array
   allRegistrationData.forEach(registration => {
     // loop thru registration.entry.sessions array
     registration.sessions.forEach(registrationSession => {
@@ -32,8 +33,34 @@ const singleSession = async (_, args, { dataSources }) => {
   return session;
 };
 
+const allSessions = async (_, __, { dataSources }) => {
+  const individualData = await getIndividualRegistrationData(dataSources);
+  const hsCrewData = await getCrewRegistrationData(dataSources);
+  const allRegistrationData = [...individualData, ...hsCrewData];
+
+  // loop thru the sessionDataSource and count all registrations from
+  // allRegistrationData for each session to get the numberAttending and
+  // the officials for each session.
+  const addDataToSessions = sessionsDataSource.map(dataSourceSession => {
+    dataSourceSession.officials = [];
+    allRegistrationData.forEach(registration => {
+      registration.sessions.forEach(registrationSession => {
+        if (dataSourceSession.id === registrationSession.id) {
+          dataSourceSession.officials.push(registration);
+        }
+      });
+    });
+
+    dataSourceSession.totalAttending = dataSourceSession.officials.length;
+    return dataSourceSession;
+  });
+
+  return addDataToSessions;
+};
+
 module.exports = {
   Query: {
-    singleSession
+    singleSession,
+    allSessions
   }
 };
