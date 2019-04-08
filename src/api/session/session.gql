@@ -16,4 +16,5 @@ type Session {
 extend type Query {
   singleSession(id: ID!): Session!
   allSessions: [Session]!
+  campSessions(location: String!): [Session]!
 }

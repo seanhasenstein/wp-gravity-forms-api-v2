@@ -58,9 +58,39 @@ const allSessions = async (_, __, { dataSources }) => {
   return addDataToSessions;
 };
 
+const campSessions = async (_, args, { dataSources }) => {
+  const individualData = await getIndividualRegistrationData(dataSources);
+  const hsCrewData = await getCrewRegistrationData(dataSources);
+  const allRegistrationData = [...individualData, ...hsCrewData];
+
+  const locationSessions = sessionsDataSource
+    .map(session => {
+      if (session.location === args.location) return session;
+    })
+    .filter(session => session !== undefined);
+
+  const updatedSessions = locationSessions.map(dataSession => {
+    dataSession.officials = [];
+    allRegistrationData.forEach(registration => {
+      registration.sessions.forEach(registrationSession => {
+        if (dataSession.id === registrationSession.id) {
+          dataSession.officials.push(registration);
+        }
+      });
+    });
+
+    dataSession.totalAttending = dataSession.officials.length;
+
+    return dataSession;
+  });
+
+  return updatedSessions;
+};
+
 module.exports = {
   Query: {
     singleSession,
-    allSessions
+    allSessions,
+    campSessions
   }
 };
