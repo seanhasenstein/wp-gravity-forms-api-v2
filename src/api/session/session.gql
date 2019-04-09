@@ -4,6 +4,7 @@ type Session {
   category: String!
   level: String!
   date: String!
+  days: String!
   time: String!
   location: String!
   year: String!
