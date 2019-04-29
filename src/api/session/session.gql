@@ -3,6 +3,7 @@ type Session {
   title: String!
   category: String!
   level: String!
+  mechanics: String!
   date: String!
   days: String!
   time: String!

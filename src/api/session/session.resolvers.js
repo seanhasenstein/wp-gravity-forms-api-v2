@@ -1,10 +1,12 @@
+const { AuthenticationError } = require('apollo-server');
 const sessionsDataSource = require('../data/sessions.datasources');
 const {
   getIndividualRegistrationData,
   getCrewRegistrationData
 } = require('../data/registration.utils');
 
-const singleSession = async (_, args, { dataSources }) => {
+const singleSession = async (_, args, { dataSources, currentUser }) => {
+  // if (!currentUser) throw new AuthenticationError('You must be logged in.');
   const individualData = await getIndividualRegistrationData(dataSources);
   const hsCrewData = await getCrewRegistrationData(dataSources);
   const allRegistrationData = [...individualData, ...hsCrewData];

@@ -1,0 +1,10 @@
+type User {
+  id: ID!
+  username: String!
+  password: String!
+  role: String!
+}
+
+extend type Query {
+  user: User!
+}
