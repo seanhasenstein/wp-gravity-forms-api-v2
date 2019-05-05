@@ -1,10 +1,24 @@
 type User {
   id: ID!
-  username: String!
+  email: String!
+}
+
+input NewAdminInput {
+  email: String!
   password: String!
-  role: String!
+}
+
+input SignInInput {
+  id: String!
+  password: String!
 }
 
 extend type Query {
   user: User!
+  getAllUsers: [User]!
+  signIn(input: SignInInput!): User
+}
+
+type Mutation {
+  createAdmin(input: NewAdminInput): User!
 }
