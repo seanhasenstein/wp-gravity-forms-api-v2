@@ -23,8 +23,6 @@ const createAdmin = async (_, args) => {
     password
   });
 
-  console.log(user);
-
   return user;
 };
 
@@ -34,9 +32,9 @@ const getAllUsers = async () => {
     .exec();
 };
 
-const signIn = async (_, args) => {
+const signIn = async (_, args, ctx) => {
   // 1. check if there is a user with that email
-  const user = await User.find({ email: args.input.email });
+  const user = await User.findOne({ email: args.input.email });
   if (!user) {
     throw new Error('No user found with that email.');
   }
@@ -48,17 +46,28 @@ const signIn = async (_, args) => {
   // 3. generate the JWT Token
   const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
   // 4. set the cookie with the token
-  // code goes here...
+  ctx.response.cookie('token', token, {
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year cookie
+  });
+
+  console.log('helloooooo');
 
   // 5. return the user
   return user;
+};
+
+const signOut = (_, args, ctx) => {
+  ctx.res.clearCookie('token');
+  return { message: 'You are successfully signed out!' };
 };
 
 module.exports = {
   Query: {
     user,
     getAllUsers,
-    signIn
+    signIn,
+    signOut
   },
   Mutation: {
     createAdmin
