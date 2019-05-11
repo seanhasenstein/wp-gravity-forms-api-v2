@@ -1,6 +1,7 @@
 type User {
   id: ID!
   email: String!
+  password: String!
 }
 
 input NewAdminInput {
@@ -9,16 +10,16 @@ input NewAdminInput {
 }
 
 input SignInInput {
-  id: String!
+  email: String!
   password: String!
 }
 
 extend type Query {
   user: User!
   getAllUsers: [User]!
-  signIn(input: SignInInput!): User
 }
 
 type Mutation {
   createAdmin(input: NewAdminInput): User!
+  signIn(input: SignInInput!): User
 }

@@ -34,9 +34,9 @@ const getAllUsers = async () => {
     .exec();
 };
 
-const signIn = async (_, args) => {
+const signIn = async (_, args, ctx) => {
   // 1. check if there is a user with that email
-  const user = await User.find({ email: args.input.email });
+  const user = await User.findOne({ email: args.input.email });
   if (!user) {
     throw new Error('No user found with that email.');
   }
@@ -47,8 +47,8 @@ const signIn = async (_, args) => {
   }
   // 3. generate the JWT Token
   const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
-  // 4. set the cookie with the token
-  // code goes here...
+  // 4. set the cookie with the token OR set req.headers.authorization with the token
+  ctx.res.cookie('token', token);
 
   // 5. return the user
   return user;
@@ -57,11 +57,11 @@ const signIn = async (_, args) => {
 module.exports = {
   Query: {
     user,
-    getAllUsers,
-    signIn
+    getAllUsers
   },
   Mutation: {
-    createAdmin
+    createAdmin,
+    signIn
   },
   User: {
     id(user) {

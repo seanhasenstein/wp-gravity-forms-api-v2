@@ -35,8 +35,10 @@ const start = async () => {
       };
     },
     async context({ req }) {
+      console.log(req);
+      // console.log('req.headers', req.headers);
       // 1. get the token from the headers
-      // const token = req.headers.authorization || '';
+      const token = req.headers.authorization || '';
 
       // 2. try to retrieve a user with the token
 
@@ -46,9 +48,9 @@ const start = async () => {
         password: 'password'
       };
       // if no user, throw an AuthenticationError
-      if (!user) throw new AuthenticationError('You must be logged in');
+      // if (!user) throw new AuthenticationError('You must be logged in');
       // if their is a user, then add it to the context
-      return { user };
+      return { ...req };
     }
   });
 
