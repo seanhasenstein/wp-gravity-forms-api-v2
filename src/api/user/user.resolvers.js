@@ -23,8 +23,6 @@ const createAdmin = async (_, args) => {
     password
   });
 
-  console.log(user);
-
   return user;
 };
 
@@ -47,9 +45,11 @@ const signIn = async (_, args, ctx) => {
   }
   // 3. generate the JWT Token
   const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
-  // 4. set the cookie with the token OR set req.headers.authorization with the token
-  ctx.res.cookie('token', token);
-
+  // 4. set the cookie with the token
+  ctx.res.cookie('token', token, {
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 * 31
+  });
   // 5. return the user
   return user;
 };
