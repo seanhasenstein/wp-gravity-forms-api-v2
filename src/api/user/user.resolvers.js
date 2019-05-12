@@ -1,4 +1,4 @@
-const { AuthenticationError } = require('apollo-server');
+// const { AuthenticationError } = require('apollo-server');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('./user.model');
@@ -54,6 +54,11 @@ const signIn = async (_, args, ctx) => {
   return user;
 };
 
+const signOut = (_, args, ctx) => {
+  ctx.res.clearCookie('token');
+  return { message: 'Successfully Logged Out' };
+};
+
 module.exports = {
   Query: {
     user,
@@ -61,7 +66,8 @@ module.exports = {
   },
   Mutation: {
     createAdmin,
-    signIn
+    signIn,
+    signOut
   },
   User: {
     id(user) {

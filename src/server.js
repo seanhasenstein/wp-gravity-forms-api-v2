@@ -16,7 +16,7 @@ const registration = require('./api/registration/registration.resolvers');
 const session = require('./api/session/session.resolvers');
 const crew = require('./api/crew/crew.resolver');
 const user = require('./api/user/user.resolvers');
-const User = require('./api/user/user.resolvers');
+const User = require('./api/user/user.model');
 
 const types = ['registration', 'session', 'crew', 'user'];
 
@@ -63,9 +63,9 @@ const start = async () => {
     }
     next();
   });
-  app.use(async (req, res, next) => {
+  app.use((req, res, next) => {
     if (!req.userId) return next();
-    const user = await User.findOne({ id: req.userId });
+    const user = User.findOne({ id: req.userId });
     req.user = user;
     next();
   });
