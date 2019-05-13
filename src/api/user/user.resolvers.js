@@ -1,12 +1,12 @@
-const { AuthenticationError } = require('apollo-server');
+// const { AuthenticationError } = require('apollo-server');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('./user.model');
 
 const user = (_, args, ctx) => {
-  if (!ctx.user) {
-    throw new AuthenticationError();
-  }
+  // if (!ctx.user) {
+  //   throw new AuthenticationError();
+  // }
   return ctx.user;
 };
 
@@ -46,31 +46,28 @@ const signIn = async (_, args, ctx) => {
   // 3. generate the JWT Token
   const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
   // 4. set the cookie with the token
-  ctx.response.cookie('token', token, {
+  ctx.res.cookie('token', token, {
     httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year cookie
+    maxAge: 1000 * 60 * 60 * 24 * 31
   });
-
-  console.log('helloooooo');
-
   // 5. return the user
   return user;
 };
 
 const signOut = (_, args, ctx) => {
   ctx.res.clearCookie('token');
-  return { message: 'You are successfully signed out!' };
+  return { message: 'Successfully Logged Out' };
 };
 
 module.exports = {
   Query: {
     user,
-    getAllUsers,
-    signIn,
-    signOut
+    getAllUsers
   },
   Mutation: {
-    createAdmin
+    createAdmin,
+    signIn,
+    signOut
   },
   User: {
     id(user) {
