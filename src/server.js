@@ -63,9 +63,9 @@ const start = async () => {
     }
     next();
   });
-  app.use((req, res, next) => {
+  app.use(async (req, res, next) => {
     if (!req.userId) return next();
-    const user = User.findOne({ id: req.userId });
+    const user = await User.findById(req.userId).exec();
     req.user = user;
     next();
   });

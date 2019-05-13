@@ -10,6 +10,15 @@ const user = (_, args, ctx) => {
   return ctx.user;
 };
 
+const me = async (_, args, ctx) => {
+  // check if there is a current user ID
+  if (!ctx.userId) {
+    return null;
+  }
+  const user = await User.findById(ctx.userId);
+  return user;
+};
+
 const createAdmin = async (_, args) => {
   // lowercase their email
   const email = args.input.email.toLowerCase();
@@ -32,7 +41,7 @@ const getAllUsers = async () => {
     .exec();
 };
 
-const signIn = async (_, args, ctx) => {
+const login = async (_, args, ctx) => {
   // 1. check if there is a user with that email
   const user = await User.findOne({ email: args.input.email });
   if (!user) {
@@ -54,7 +63,7 @@ const signIn = async (_, args, ctx) => {
   return user;
 };
 
-const signOut = (_, args, ctx) => {
+const logout = (_, args, ctx) => {
   ctx.res.clearCookie('token');
   return { message: 'Successfully Logged Out' };
 };
@@ -62,12 +71,13 @@ const signOut = (_, args, ctx) => {
 module.exports = {
   Query: {
     user,
+    me,
     getAllUsers
   },
   Mutation: {
     createAdmin,
-    signIn,
-    signOut
+    login,
+    logout
   },
   User: {
     id(user) {

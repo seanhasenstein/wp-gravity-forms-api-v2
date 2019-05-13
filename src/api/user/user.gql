@@ -8,16 +8,12 @@ type User {
   password: String!
 }
 
-type SignOutSuccessMessage {
-  message: String
-}
-
 input NewAdminInput {
   email: String!
   password: String!
 }
 
-input SignInInput {
+input LoginInput {
   email: String!
   password: String!
 }
@@ -25,10 +21,11 @@ input SignInInput {
 extend type Query {
   user: User!
   getAllUsers: [User]!
+  me: User
 }
 
 type Mutation {
   createAdmin(input: NewAdminInput): User!
-  signIn(input: SignInInput!): User
-  signOut: SignOutSuccessMessage
+  login(input: LoginInput!): User
+  logout: SuccessMessage
 }
