@@ -19,7 +19,7 @@ const me = async (_, args, ctx) => {
   return user;
 };
 
-const createAdmin = async (_, args) => {
+const signup = async (_, args) => {
   // lowercase their email
   const email = args.input.email.toLowerCase();
 
@@ -28,6 +28,9 @@ const createAdmin = async (_, args) => {
 
   // create the user in the database
   const user = User.create({
+    firstName: args.input.firstName,
+    lastName: args.input.lastName,
+    phone: args.input.phone,
     email,
     password
   });
@@ -70,12 +73,11 @@ const logout = (_, args, ctx) => {
 
 module.exports = {
   Query: {
-    user,
     me,
     getAllUsers
   },
   Mutation: {
-    createAdmin,
+    signup,
     login,
     logout
   },
