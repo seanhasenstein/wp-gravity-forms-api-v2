@@ -12,4 +12,5 @@ type Crew {
 
 extend type Query {
   allCrews: [Crew]!
+  sessionCrews(id: Int!): [Crew]!
 }

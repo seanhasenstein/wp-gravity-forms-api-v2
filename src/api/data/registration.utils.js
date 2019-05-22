@@ -31,7 +31,7 @@ async function getIndividualRegistrationData(dataSources) {
       .filter(value => value != '')
       // Map over the sessionsArray and update the values
       .map(entry => {
-        if (entry === '170 (Kau WC Fri Sat') {
+        if (entry === '170 (Kau WC Fri Sat)') {
           return (entry = sessionsDataSource[0]);
         }
         if (entry === '170 (Kau WC Sat Sun)') {
