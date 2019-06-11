@@ -32,11 +32,34 @@ const allRegistrations = async (_, __, { dataSources }) => {
   return combinedData;
 };
 
+const searchRegistrations = async (_, args, { dataSources }) => {
+  // if args.input is blank or < 2 characters return an empty array
+  if (args.input === '' || args.input.split('').length < 2) return [];
+
+  const individualData = await getIndividualRegistrationData(dataSources);
+  const hsCrewData = await getCrewRegistrationData(dataSources);
+  const combinedData = [...individualData, ...hsCrewData];
+
+  const filteredData = combinedData
+    .map(reg => {
+      if (
+        reg.firstName.toLowerCase().includes(args.input.toLowerCase()) ||
+        reg.lastName.toLowerCase().includes(args.input.toLowerCase()) ||
+        reg.transactionId === args.input ||
+        reg.state.toLowerCase() === args.input.toLowerCase()
+      )
+        return reg;
+    })
+    .filter(val => val != null);
+  return filteredData;
+};
+
 module.exports = {
   Query: {
     singleRegistration,
     inividualRegistrations,
     hsCrewRegistrations,
-    allRegistrations
+    allRegistrations,
+    searchRegistrations
   }
 };

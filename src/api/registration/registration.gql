@@ -32,4 +32,5 @@ type Query {
   inividualRegistrations: [Registration]!
   hsCrewRegistrations: [Registration]!
   allRegistrations: [Registration]!
+  searchRegistrations(input: String!): [Registration]!
 }
